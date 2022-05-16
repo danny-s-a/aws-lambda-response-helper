@@ -46,6 +46,7 @@ jobs:
         id: published
         run: echo "::set-output name=version$(npm show aws-lambda-response-helper version --registry=https://npm.pkg.github.com/ --silent)"
 
+      - run: echo ${{steps.local.output.version}}
       - run: echo ${{steps.published.output.version}}
 
       - name: Ensure version has been upped
