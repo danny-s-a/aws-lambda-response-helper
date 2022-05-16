@@ -3,15 +3,55 @@ name: PR Checks
 on: pull_request
 
 jobs:
-  label:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/labeler@v2
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-  run_checks:
-    name: Run Checks
+  code_checks:
+    name: Code Checks
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+        
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Audit Dependencies
+        run: npm audit
+
+      - name: Check Linting
+        run: npm run check:linting
+
+      - name: Check Build
+        run: npm run build
+      
+      - name: Check Tests
+        run: npm run test
+
+  version_checks:
+    name: Code Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+
+      - name: Get local version
+        id: local
+        run: echo "::set-output name=version$(cat package.json | grep '"version":' | awk '{print $2}' | cut -d '"' -f 2)"
+
+      - name: Get published version
+        id: published
+        run: echo "::set-output name=version$(npm show aws-lambda-response-helper version --registry=https://npm.pkg.github.com/ --silent)"
+
+      - name: Compare
+        if: steps.local.output.version == steps.published.output.version
+        run: |
+          echo "::error::Version already exists"
+          exit 1
+
+
+
       
