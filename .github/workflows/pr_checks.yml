@@ -40,11 +40,13 @@ jobs:
 
       - name: Get local version
         id: local
-        run: echo "::set-output name=version$(cat package.json | grep '"version":' | awk '{print $2}' | cut -d '"' -f 2)"
+        run: |
+          echo "::set-output name=version$(cat package.json | grep '"version":' | awk '{print $2}' | cut -d '"' -f 2)"
 
       - name: Get published version
         id: published
-        run: echo "::set-output name=version$(npm show aws-lambda-response-helper version --registry=https://npm.pkg.github.com/ --silent)"
+        run: |
+          echo "::set-output name=version$(npm show aws-lambda-response-helper version --registry=https://npm.pkg.github.com/ --silent)"
 
       - run: echo $VER
         env:
