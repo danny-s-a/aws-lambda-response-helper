@@ -50,13 +50,13 @@ jobs:
 
       - run: echo $VER
         env:
-          VER: ${{steps.local.output.version}}
+          VER: ${{steps.local.outputs.version}}
       - run: echo $VER
         env:
-          VER: ${{steps.published.output.version}}
+          VER: ${{steps.published.outputs.version}}
 
       - name: Ensure version has been upped
-        if: steps.local.output.version == steps.published.output.version
+        if: steps.local.outputs.version == steps.published.outputs.version
         run: |
           echo "::error::Version already exists"
           exit 1
