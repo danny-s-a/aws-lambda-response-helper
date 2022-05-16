@@ -25,8 +25,8 @@ jobs:
       - name: Check Build
         run: npm run build
       
-      - name: Check Tests
-        run: npm run test
+      # - name: Check Tests
+      #   run: npm run test
 
   version_checks:
     name: Version Update Checks
@@ -46,7 +46,9 @@ jobs:
         id: published
         run: echo "::set-output name=version$(npm show aws-lambda-response-helper version --registry=https://npm.pkg.github.com/ --silent)"
 
-      - name: Compare
+      - run: echo ${{steps.published.output.version}}
+
+      - name: Ensure version has been upped
         if: steps.local.output.version == steps.published.output.version
         run: |
           echo "::error::Version already exists"
