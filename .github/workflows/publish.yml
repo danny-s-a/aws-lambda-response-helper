@@ -18,7 +18,7 @@ jobs:
         
       - name: Get Version
         id: version
-        run: echo "::set-output name=version$(cat package.json | grep '"version":' | awk '{print $2}' | cut -d '"' -f 2)"
+        run: echo "::set-output name=version::$(cat package.json | grep '"version":' | awk '{print $2}' | cut -d '"' -f 2)"
 
       - name: Install Dependencies
         run: npm install
