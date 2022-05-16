@@ -40,21 +40,14 @@ jobs:
 
       - name: Get local version
         id: local
-        run: echo "::set-output name=version$(cat package.json | grep '"version":' | awk '{print $2}' | cut -d '"' -f 2)"
+        run: echo "::set-output name=version::$(cat package.json | grep '"version":' | awk '{print $2}' | cut -d '"' -f 2)"
 
       - name: Get published version
         id: published
-        run: echo "::set-output name=version$(npm show aws-lambda-response-helper version --registry=https://npm.pkg.github.com/ --silent)"
-
-      - run: echo ${{steps.local.output.version}}
-      - run: echo ${{steps.published.output.version}}
+        run: echo "::set-output name=version::$(npm show aws-lambda-response-helper version --registry=https://npm.pkg.github.com/ --silent)"
 
       - name: Ensure version has been upped
-        if: steps.local.output.version == steps.published.output.version
+        if: steps.local.outputs.version == steps.published.outputs.version
         run: |
           echo "::error::Version already exists"
           exit 1
-
-
-
-      
