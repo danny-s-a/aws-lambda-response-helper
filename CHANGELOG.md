@@ -12,6 +12,6 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
-### UNRELEASED
+### 1.0.0
 #### Added
 - Scaffolded project inc. README, CHANGELOG, Actions Workflows
