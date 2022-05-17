@@ -5,9 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.js",
   "typings": "dist/index.js",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/danny-s-a"
-  },
+  
   "author": "@danny-s-a",
   "license": "ISC",
   "repository": {
