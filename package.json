@@ -1,11 +1,10 @@
 {
-  "name": "@danny-s-a/aws-lambda-response-helper",
+  "name": "aws-lambda-response-helper",
   "version": "1.0.0",
   "description": "## Overview",
   "main": "dist/index.js",
   "types": "dist/index.js",
   "typings": "dist/index.js",
-  
   "author": "@danny-s-a",
   "license": "ISC",
   "repository": {
