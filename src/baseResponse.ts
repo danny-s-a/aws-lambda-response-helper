@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
-import jwtDecode from 'jwt-decode';
+import * as jwt from 'jsonwebtoken';
 import { StatusCodeType } from './statusCodes';
 
 export interface IObject {
@@ -20,20 +20,25 @@ export abstract class Response implements IResponse {
         'Access-Control-Allow-Credentials': true
     };
 
-    constructor(event: APIGatewayProxyEvent, statusCode: StatusCodeType, body?: any, headers?: IObject) {
+    constructor(
+        event: APIGatewayProxyEvent,
+        statusCode: StatusCodeType,
+        body?: any,
+        headers?: IObject,
+        tokenUserKey = 'email') {
         this.statusCode = statusCode;
         this.body = JSON.stringify(body);
         if (headers) {
             this.headers = headers;
         }
 
-        this.logRequest(event);
+        this.logRequest(event, tokenUserKey);
     }
 
-    private logRequest(event: APIGatewayProxyEvent) {
+    private logRequest(event: APIGatewayProxyEvent, tokenUserKey: string) {
         let user;
         if (event.headers.Authorization) {
-            user = this.getUser(event.headers.Authorization);
+            user = this.getUser(event.headers.Authorization, tokenUserKey);
         }
 
         console.log({
@@ -49,12 +54,16 @@ export abstract class Response implements IResponse {
         });
     }
 
-    private getUser(token: string) {
+    private getUser(token: string, tokenUserKey: string) {
         try {
-            const decodedToken = jwtDecode<IObject>(token);
+            const decodedToken = jwt.decode(token);
 
-            if (decodedToken) {
-                return decodedToken.email;
+            const user = (decodedToken as jwt.JwtPayload)[tokenUserKey];
+
+            if (user) {
+                return user;
+            } else {
+                throw new Error(`JWT invalid. Does not contain property ${tokenUserKey}`);
             }
         } catch (err) {
             console.log(err);

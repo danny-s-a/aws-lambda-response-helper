@@ -30,8 +30,15 @@ export class CustomException extends Error {
     }
 }
 
+// 5XX Responses
 export class InternalServerError extends CustomException {
     constructor() {
         super(StatusCodes.INTERNAL_ERROR, 'Internal Server Error');
+    }
+}
+
+export class NotImplemented extends CustomException {
+    constructor(msg?: any) {
+        super(StatusCodes.NOT_IMPLEMENTED, msg);
     }
 }
