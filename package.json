@@ -1,29 +1,30 @@
 {
-  "name": "aws-lambda-response-helper",
+  "name": "@danny-s-a/aws-lambda-response-helper",
   "version": "1.0.0",
   "description": "## Overview",
   "main": "dist/index.js",
   "types": "dist/index.js",
   "typings": "dist/index.js",
-  "directories": {
-    "test": "test"
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/danny-s-a"
   },
+  "author": "@danny-s-a",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danny-s-a/aws-lambda-response-helper.git"
+  },
+  "homepage": "https://github.com/danny-s-a/aws-lambda-response-helper#readme",
+  "bugs": "https://github.com/danny-s-a/aws-lambda-response-helper/issues",
   "scripts": {
     "build": "tsc",
     "test": "jest",
     "lint": "eslint . --ext .ts --fix=true",
     "check:linting": "eslint . --ext .ts"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/danny-s-a/aws-lambda-response-helper.git"
+  "dependencies": {
+    "jwt-decode": "^3.1.2"
   },
-  "author": "@danny-s-a",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/danny-s-a/aws-lambda-response-helper/issues"
-  },
-  "homepage": "https://github.com/danny-s-a/aws-lambda-response-helper#readme",
   "devDependencies": {
     "@types/aws-lambda": "^8.10.97",
     "@types/jest": "^27.5.1",
@@ -34,8 +35,5 @@
     "jest": "^28.1.0",
     "ts-jest": "^28.0.2",
     "typescript": "^4.6.4"
-  },
-  "dependencies": {
-    "jwt-decode": "^3.1.2"
   }
 }
