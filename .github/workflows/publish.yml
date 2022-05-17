@@ -25,10 +25,10 @@ jobs:
       - name: Build
         run: npm run build
 
-      # - name: Set NPMRC
-      #   run: echo "npm.pkg.github.com/:_authToken=$PAT" >> .npmrc
-      #   env:
-      #     PAT: ${{ secrets.NPM_AUTH_TOKEN }}
+      - name: Set NPMRC
+        run: echo "npm.pkg.github.com/:_authToken=$PAT" >> .npmrc
+        env:
+          PAT: ${{ secrets.NPM_AUTH_TOKEN }}
 
       - name: Publish
         run: npm publish
