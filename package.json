@@ -1,7 +1,7 @@
 {
-  "name": "aws-lambda-response-helper",
+  "name": "@danny-s-a/aws-lambda-response-helper",
   "version": "1.0.0",
-  "description": "## Overview",
+  "description": "Response helper for AWS lambda's, including auditing of all requests",
   "main": "dist/index.js",
   "types": "dist/index.js",
   "typings": "dist/index.js",
