@@ -38,7 +38,7 @@ jobs:
         run: echo "::set-output name=version::$(cat package.json | grep '"version":' | awk '{print $2}' | cut -d '"' -f 2)"
       
       - name: Create Release
-        uses: ncipollo/release-action
+        uses: ncipollo/release-action@v1.10.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
