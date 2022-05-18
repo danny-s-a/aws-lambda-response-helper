@@ -1,7 +1,7 @@
 {
   "name": "@danny-s-a/aws-lambda-response-helper",
   "version": "1.0.2",
-  "description": "Simple response library for use with AWS Lambda",
+  "description": "Response library for use with AWS Lambda, with request auditing",
   "main": "dist/index.js",
   "types": "dist/index.js",
   "typings": "dist/index.js",

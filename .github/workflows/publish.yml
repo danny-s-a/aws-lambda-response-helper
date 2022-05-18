@@ -7,7 +7,7 @@ on:
 
 jobs:
   publish:
-    name: Deploy
+    name: Publish
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,10 +15,6 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org
-        
-      - name: Get Version
-        id: version
-        run: echo "::set-output name=version::$(cat package.json | grep '"version":' | awk '{print $2}' | cut -d '"' -f 2)"
 
       - name: Install Dependencies
         run: npm install
@@ -31,13 +27,20 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
       
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Get Version
+        id: version
+        run: echo "::set-output name=version::$(cat package.json | grep '"version":' | awk '{print $2}' | cut -d '"' -f 2)"
+      
       - name: Create Release
-        uses: actions/create-release@v1
+        uses: ncipollo/release-action
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.version.outputs.version }}
-          release_name: ${{ steps.version.outputs.version }}
-          body_path: CHANGELOG.md
-          draft: false
-          prerelease: false
+          tag: ${{ steps.version.outputs.version }}
+          body: CHANGELOG.md
