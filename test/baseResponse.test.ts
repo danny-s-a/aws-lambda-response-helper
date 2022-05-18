@@ -1,4 +1,4 @@
-import { Response } from '../src/baseResponse';
+import { Response } from '../src/BaseResponse';
 import { StatusCodes } from '../src/statusCodes';
 import { getMockEvent, testUserEmail } from './testHelpers';
 import * as jwt from 'jsonwebtoken';
@@ -10,7 +10,13 @@ describe('Base Response', () => {
         console.log = jest.fn();
 
         const mockEvent = getMockEvent();
-        const actual = new TestResponse(mockEvent, StatusCodes.OK);
+        const testStatusCode = StatusCodes.OK;
+        const testHeaders = { testHeaderKey: 'iHaveBeenSet' };
+        const actual = new TestResponse(mockEvent, testStatusCode, undefined, { testHeaderKey: 'iHaveBeenSet' });
+
+        expect(actual.statusCode).toEqual(testStatusCode);
+        expect(actual.body).toBeUndefined();
+        expect(actual.headers).toEqual(testHeaders);
 
         expect(console.log).toHaveBeenCalledWith({
             user: testUserEmail,
@@ -35,6 +41,6 @@ describe('Base Response', () => {
             actual = err;
         }
 
-        expect(actual).toBeUndefined();
+        expect(actual).toEqual(new Error('JWT invalid. Does not contain property email'));
     });
 });

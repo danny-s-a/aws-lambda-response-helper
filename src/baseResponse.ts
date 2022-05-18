@@ -55,18 +55,14 @@ export abstract class Response implements IResponse {
     }
 
     private getUser(token: string, tokenUserKey: string) {
-        try {
-            const decodedToken = jwt.decode(token);
+        const decodedToken = jwt.decode(token);
 
-            const user = (decodedToken as jwt.JwtPayload)[tokenUserKey];
+        const user = (decodedToken as jwt.JwtPayload)[tokenUserKey];
 
-            if (user) {
-                return user;
-            } else {
-                throw new Error(`JWT invalid. Does not contain property ${tokenUserKey}`);
-            }
-        } catch (err) {
-            console.log(err);
+        if (user) {
+            return user;
+        } else {
+            throw new Error(`JWT invalid. Does not contain property ${tokenUserKey}`);
         }
     }
 }

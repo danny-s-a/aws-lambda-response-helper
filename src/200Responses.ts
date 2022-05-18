@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
-import { IObject, Response } from './baseResponse';
+import { IObject, Response } from './BaseResponse';
 import { StatusCodes } from './statusCodes';
 
 export class Ok extends Response {
