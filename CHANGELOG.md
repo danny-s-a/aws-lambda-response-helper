@@ -12,6 +12,12 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
+### 1.0.2
+### Changed
+- Updated ReadMe & description in package json
+### Fixed
+- Create release step in `publish.yml` workflow
+
 ### 1.0.1
 #### Added
 - Tests
