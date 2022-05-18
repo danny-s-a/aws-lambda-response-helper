@@ -39,8 +39,7 @@ jobs:
       
       - name: Create Release
         uses: ncipollo/release-action@v1.10.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag: ${{ steps.version.outputs.version }}
-          body: CHANGELOG.md
+          bodyFile: "CHANGELOG.md"
+          token: ${{ secrets.GITHUB_TOKEN }}
