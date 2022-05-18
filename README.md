@@ -11,7 +11,7 @@ Only param required by a Response object is the `event`, during instantiation th
 
 ```javascript
 import { APIGatewayProxyHandler, APIGatewayProxyEvent } from 'aws-lambda';
-import { Ok, BadRequest, errorHandler } from '@danny-s-a/aw-lambda-response-helper';
+import { Ok, BadRequest, errorHandler } from 'aw-lambda-response-helper';
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent) => {
     try {
