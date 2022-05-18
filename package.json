@@ -1,12 +1,12 @@
 {
   "name": "aws-lambda-response-helper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Response library for use with AWS Lambda, with request auditing",
   "main": "dist/index.js",
   "types": "dist/index.js",
   "typings": "dist/index.js",
   "author": "@danny-s-a",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/danny-s-a/aws-lambda-response-helper.git"
