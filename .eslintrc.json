@@ -23,5 +23,9 @@
         "require-jsdoc": "off",
         "comma-dangle": ["error", "never"],
         "max-len": ["error", 120]
-    }
+    },
+    "ignorePatterns": [
+        "dist/",
+        "coverage/"
+    ]
 }
