@@ -3,6 +3,7 @@ module.exports = {
     testEnvironment: 'node',
     verbose: false,
     silent: true,
+    testResultsProcessor: 'jest-sonar-reporter',
     collectCoverageFrom: [
         'src/*.ts',
         '!src/index.ts'
@@ -14,5 +15,9 @@ module.exports = {
             lines: 80,
             statements: 80
         }
-    }
+    },
+    coveragePathIgnorePatterns: [
+        '/node_modules/',
+        '/test/'
+    ]
 };
