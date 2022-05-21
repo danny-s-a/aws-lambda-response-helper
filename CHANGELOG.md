@@ -12,9 +12,11 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
-### 1.0.1
+### 1.0.2
 #### Added
 - Configured SonarCloud scanning
+
+### 1.0.1
 #### Changed
 - From ISC to MIT Licence & Added licence file
 
