@@ -15,6 +15,8 @@ All notable changes to this project will be documented in this file.
 ### 1.0.2
 #### Added
 - Configured SonarCloud scanning
+#### Fixed
+- Version check workflow job, uses npm registry rather than github
 
 ### 1.0.1
 #### Changed
