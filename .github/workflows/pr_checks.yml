@@ -28,6 +28,12 @@ jobs:
       - name: Check Tests & Coverage
         run: npm run coverage
 
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   version_checks:
     name: Version Update Checks
     runs-on: ubuntu-latest
