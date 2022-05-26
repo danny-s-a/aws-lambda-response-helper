@@ -3,8 +3,7 @@
   "version": "1.0.2",
   "description": "Response library for use with AWS Lambda, with request auditing",
   "main": "dist/index.js",
-  "types": "dist/index.js",
-  "typings": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": "@danny-s-a",
   "license": "MIT",
   "repository": {
