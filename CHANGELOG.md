@@ -12,6 +12,11 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
+### 1.0.3
+#### Changed
+- Set types file
+- Added sonar properties file to npm ignore
+
 ### 1.0.2
 #### Added
 - Configured SonarCloud scanning
