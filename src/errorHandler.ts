@@ -1,7 +1,7 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
 import { InternalServerError } from './500Responses';
 import { IObject, Response } from './BaseResponse';
-import CustomException from './CustomException';
+import { CustomException } from './CustomException';
 
 
 export class ErrorResponse extends Response {
@@ -10,7 +10,7 @@ export class ErrorResponse extends Response {
     }
 }
 
-export default function errorHandler(
+export function errorHandler(
     err: CustomException | Error,
     event: APIGatewayProxyEvent,
     headers?: IObject): Response {

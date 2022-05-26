@@ -1,6 +1,6 @@
 import { BadRequest } from '../src/400Responses';
 import { InternalServerError } from '../src/500Responses';
-import errorHandler, { ErrorResponse } from '../src/errorHandler';
+import { errorHandler, ErrorResponse } from '../src/errorHandler';
 import { getMockEvent } from './testHelpers';
 
 describe('Error Handler', () => {

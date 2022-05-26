@@ -1,5 +1,5 @@
 import { StatusCodes } from './statusCodes';
-import CustomException from './CustomException';
+import { CustomException } from './CustomException';
 
 export class InternalServerError extends CustomException {
     constructor(msg: any = 'Internal Server Error') {

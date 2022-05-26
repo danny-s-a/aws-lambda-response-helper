@@ -1,4 +1,4 @@
-import CustomException from './CustomException';
+import { CustomException } from './CustomException';
 import { StatusCodes } from './statusCodes';
 
 // 4XX Responses

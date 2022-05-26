@@ -1,6 +1,6 @@
 import { StatusCodeType } from './statusCodes';
 
-export default class CustomException {
+export class CustomException {
     statusCode: StatusCodeType;
     message: string;
     name = 'CustomException';
