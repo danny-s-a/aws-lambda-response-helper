@@ -11,7 +11,7 @@ export class ErrorResponse extends Response {
 }
 
 export function errorHandler(
-    err: CustomException | Error,
+    err: any,
     event: APIGatewayProxyEvent,
     headers?: IObject): Response {
     if (err.name !== 'CustomException') {

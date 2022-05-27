@@ -25,3 +25,15 @@ export class Forbidden extends CustomException {
         super(StatusCodes.FORBIDDEN, msg);
     }
 }
+
+export class NotFound extends CustomException {
+    constructor(msg?: any) {
+        super(StatusCodes.NOT_FOUND, msg);
+    }
+}
+
+export class Conflict extends CustomException {
+    constructor(msg?: any) {
+        super(StatusCodes.CONFLICT, msg);
+    }
+}

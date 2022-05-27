@@ -12,6 +12,12 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
+### 1.0.5
+#### Added
+- Conflict & NotFound responses
+#### Changed
+- errorHandler to accept type `any`
+
 ### 1.0.4
 #### Changed
 - Changed all default exports to be explicit
