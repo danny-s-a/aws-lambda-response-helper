@@ -41,7 +41,7 @@ export abstract class Response implements IResponse {
             user = this.getUser(event.headers.Authorization, tokenUserKey);
         }
 
-        console.log({
+        console.log(JSON.stringify({
             user,
             responseStatus: this.statusCode,
             timestamp: new Date(event.requestContext.requestTimeEpoch),
@@ -51,7 +51,7 @@ export abstract class Response implements IResponse {
             query: event.queryStringParameters,
             sourceIP: event.requestContext.identity.sourceIp,
             body: event.body
-        });
+        }));
     }
 
     private getUser(token: string, tokenUserKey: string) {

@@ -12,6 +12,10 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
+### 1.1.0
+#### Changed
+- Console log now stringifies object
+
 ### 1.0.5
 #### Added
 - Conflict & NotFound responses
