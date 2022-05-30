@@ -12,6 +12,10 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
+### 1.1.1
+#### Changed
+- Logged object now prefixed & suffixed with `--` make it easier for extraction
+
 ### 1.1.0
 #### Changed
 - Console log now stringifies object
