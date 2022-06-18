@@ -16,6 +16,7 @@ export const testUserEmail = 'bob@test.com';
 export interface IMockEventParams {
     method?: HTTPMethod;
     body?: any,
+    headers?: {[key: string]: string},
     pathParameters?: {[key: string]: string},
     queryStringParameters?: {[key: string]: string},
     multiValueQueryStringParameters?: {[key: string]: string[]},
@@ -28,11 +29,13 @@ export function getMockEvent(params: IMockEventParams = {
     authToken: jwt.sign({ email: testUserEmail }, 'secret'),
     requestTimeEpoch: new Date().getTime()
 }): APIGatewayProxyEvent {
+    const eventHeaders = params.headers || {
+        Authorization: params.authToken
+    };
+
     return {
         body: JSON.stringify(params.body),
-        headers: {
-            Authorization: params.authToken
-        },
+        headers: eventHeaders,
         httpMethod: params.method,
         path: '/',
         pathParameters: params.pathParameters,

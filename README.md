@@ -20,10 +20,15 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
         }
 
         // Do some stuff with the body
+        // ...
+
+        // Use env vars below to customise internal behaviour around token decoding
+        process.env.ALR_TOKEN_HEADER_KEY = '<property in event.headers containing the auth token, default: Authorization>'
+        process.env.ALR_TOKEN_USER_KEY = '<property in the auth token containing the username, default: email>'
 
         return Ok(event);
     } catch (err) {
-        return errorHandler(event, err);
+        return errorHandler(err, event);
     }
 }
 ```

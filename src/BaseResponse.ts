@@ -36,8 +36,10 @@ export abstract class Response implements IResponse {
 
     private logRequest(event: APIGatewayProxyEvent) {
         let user;
-        if (event.headers.Authorization) {
-            user = this.getUser(event.headers.Authorization);
+
+        const tokenHeaderKey = process.env.ALR_TOKEN_HEADER_KEY || 'Authorization';
+        if (event.headers[tokenHeaderKey]) {
+            user = this.getUser(event.headers[tokenHeaderKey]!);
         }
 
         console.log(

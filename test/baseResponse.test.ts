@@ -46,13 +46,18 @@ describe('Base Response', () => {
         expect(actual).toEqual(new Error('JWT invalid. Does not contain property email'));
     });
 
-    it('should instantiate and log event as expected', () => {
+    it('should instantiate and log event as expected - using env vars for token keys', () => {
         console.log = jest.fn();
 
+        const tokenHeaderKey = 'x-auth-token';
+        process.env.ALR_TOKEN_HEADER_KEY = tokenHeaderKey;
         const userTokenKey = 'username';
         process.env.ALR_TOKEN_USER_KEY = userTokenKey;
+
         const mockEvent = getMockEvent({
-            authToken: jwt.sign({ [userTokenKey]: testUserEmail, email: 'shouldnot@test.com' }, 'secret')
+            headers: {
+                [tokenHeaderKey]: jwt.sign({ [userTokenKey]: testUserEmail, email: 'shouldnot@test.com' }, 'secret')
+            }
         });
         const testStatusCode = StatusCodes.OK;
         const actual = new TestResponse(mockEvent, testStatusCode);
@@ -73,5 +78,8 @@ describe('Base Response', () => {
                 body: mockEvent.body
             })
         );
+
+        process.env.ALR_TOKEN_HEADER_KEY = undefined;
+        process.env.ALR_TOKEN_USER_KEY = undefined;
     });
 });
