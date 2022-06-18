@@ -1,4 +1,4 @@
-# APPLICATION NAME
+# CHANGELOG
 
 All notable changes to this project will be documented in this file.
 
@@ -12,11 +12,12 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
-### 1.1.1
+### 1.1.2
 ### Added
 - Ability to change header key in which the auth token resides via the `process.env.ALR_TOKEN_HEADER_KEY` env var, default is `Authorization`
 ### Changed
 - Ability to configure the tokenUserKey i.e. property within the decoded JWT that specifies the username, defaults to `email` but can be set using via env var `process.env.ALR_TOKEN_USER_KEY`
+- Updated examples in readme to reflect/demonstrates changes
 
 ### 1.1.0
 #### Changed
