@@ -12,6 +12,10 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
+### 1.1.5
+#### Fixed
+- Missing optional `hideBody` param for `errorHandler()`
+
 ### 1.1.4
 #### Added
 - Option to not log request body so sensitive content can be hidden

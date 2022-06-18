@@ -13,11 +13,12 @@ export class ErrorResponse extends Response {
 export function errorHandler(
     err: any,
     event: APIGatewayProxyEvent,
-    headers?: IObject): Response {
+    headers?: IObject,
+    hideBody?: boolean): Response {
     if (err.name !== 'CustomException') {
         console.log(err);
         err = new InternalServerError();
     }
 
-    return new ErrorResponse(err as CustomException, event, headers);
+    return new ErrorResponse(err as CustomException, event, headers, hideBody);
 }
