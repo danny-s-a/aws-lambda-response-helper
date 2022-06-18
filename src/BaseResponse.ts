@@ -24,25 +24,23 @@ export abstract class Response implements IResponse {
         event: APIGatewayProxyEvent,
         statusCode: StatusCodeType,
         body?: any,
-        headers?: IObject,
-        tokenUserKey = 'email') {
+        headers?: IObject) {
         this.statusCode = statusCode;
         this.body = JSON.stringify(body);
         if (headers) {
             this.headers = headers;
         }
 
-        this.logRequest(event, tokenUserKey);
+        this.logRequest(event);
     }
 
-    private logRequest(event: APIGatewayProxyEvent, tokenUserKey: string) {
+    private logRequest(event: APIGatewayProxyEvent) {
         let user;
         if (event.headers.Authorization) {
-            user = this.getUser(event.headers.Authorization, tokenUserKey);
+            user = this.getUser(event.headers.Authorization);
         }
 
         console.log(
-            '--' +
             JSON.stringify({
                 user,
                 responseStatus: this.statusCode,
@@ -53,12 +51,12 @@ export abstract class Response implements IResponse {
                 query: event.queryStringParameters,
                 sourceIP: event.requestContext.identity.sourceIp,
                 body: event.body
-            }) +
-            '--'
+            })
         );
     }
 
-    private getUser(token: string, tokenUserKey: string) {
+    private getUser(token: string) {
+        const tokenUserKey = process.env.ALR_TOKEN_USER_KEY || 'email';
         const decodedToken = jwt.decode(token);
 
         const user = (decodedToken as jwt.JwtPayload)[tokenUserKey];

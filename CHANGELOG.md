@@ -13,8 +13,8 @@ All notable changes to this project will be documented in this file.
 ## Releases
 
 ### 1.1.1
-#### Changed
-- Logged object now prefixed & suffixed with `--` make it easier for extraction
+### Changed
+- Ability to configure the tokenUserKey i.e. property within the decoded JWT that specifies the username, defaults to `email` but can be set using via env var `process.env.ALR_TOKEN_USER_KEY`
 
 ### 1.1.0
 #### Changed
