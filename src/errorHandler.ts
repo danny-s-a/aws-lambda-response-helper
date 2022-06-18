@@ -5,8 +5,8 @@ import { CustomException } from './CustomException';
 
 
 export class ErrorResponse extends Response {
-    constructor(exception: CustomException, event: APIGatewayProxyEvent, headers?: IObject) {
-        super(event, exception.statusCode, exception.message, headers);
+    constructor(exception: CustomException, event: APIGatewayProxyEvent, headers?: IObject, hideBody?: boolean) {
+        super(event, exception.statusCode, exception.message, headers, hideBody);
     }
 }
 

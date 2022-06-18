@@ -12,6 +12,10 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
+### 1.1.4
+#### Added
+- Option to not log request body so sensitive content can be hidden
+
 ### 1.1.3
 #### Changed
 - @types/aws-lambda now a full dependency to prevent build issues for dependent packages that don't have it installed

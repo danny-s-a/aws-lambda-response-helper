@@ -24,17 +24,18 @@ export abstract class Response implements IResponse {
         event: APIGatewayProxyEvent,
         statusCode: StatusCodeType,
         body?: any,
-        headers?: IObject) {
+        headers?: IObject,
+        hideBody = false) {
         this.statusCode = statusCode;
         this.body = JSON.stringify(body);
         if (headers) {
             this.headers = headers;
         }
 
-        this.logRequest(event);
+        this.logRequest(event, hideBody);
     }
 
-    private logRequest(event: APIGatewayProxyEvent) {
+    private logRequest(event: APIGatewayProxyEvent, hideBody: boolean) {
         let user;
 
         const tokenHeaderKey = process.env.ALR_TOKEN_HEADER_KEY || 'Authorization';
@@ -52,7 +53,7 @@ export abstract class Response implements IResponse {
                 pathParameters: event.pathParameters,
                 query: event.queryStringParameters,
                 sourceIP: event.requestContext.identity.sourceIp,
-                body: event.body
+                body: hideBody ? '********' : event.body
             })
         );
     }
