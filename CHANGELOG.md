@@ -12,6 +12,10 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
+### 1.1.7
+#### Changed
+- errorHanlder() now logs any error received using console.error
+
 ### 1.1.5
 #### Fixed
 - Missing optional `hideBody` param for `errorHandler()`

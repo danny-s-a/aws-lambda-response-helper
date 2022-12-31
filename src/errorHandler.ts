@@ -15,8 +15,9 @@ export function errorHandler(
     event: APIGatewayProxyEvent,
     headers?: IObject,
     hideBody?: boolean): Response {
+    console.error(err);
+
     if (err.name !== 'CustomException') {
-        console.log(err);
         err = new InternalServerError();
     }
 
