@@ -12,9 +12,13 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
+### 1.1.8
+#### Fixed
+- json5 vulnerability
+
 ### 1.1.7
 #### Changed
-- errorHanlder() now logs any error received using console.error
+- errorHandler() now logs any error received using console.error
 
 ### 1.1.5
 #### Fixed
