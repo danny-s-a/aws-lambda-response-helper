@@ -12,9 +12,13 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
+### 1.1.9
+#### Fixed
+- `semver` & `word-wrap` regex vulnerabilities in dependencies
+
 ### 1.1.8
 #### Fixed
-- json5 vulnerability
+- `json5` vulnerability
 
 ### 1.1.7
 #### Changed
