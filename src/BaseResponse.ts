@@ -38,7 +38,7 @@ export abstract class Response implements IResponse {
     private logRequest(event: APIGatewayProxyEvent, hideBody: boolean) {
         let user;
 
-        const tokenHeaderKey = process.env.ALR_TOKEN_HEADER_KEY || 'Authorization';
+        const tokenHeaderKey = process.env.ALR_TOKEN_HEADER_KEY ?? 'Authorization';
         if (event.headers[tokenHeaderKey]) {
             user = this.getUser(event.headers[tokenHeaderKey]!);
         }
@@ -59,7 +59,7 @@ export abstract class Response implements IResponse {
     }
 
     private getUser(token: string) {
-        const tokenUserKey = process.env.ALR_TOKEN_USER_KEY || 'email';
+        const tokenUserKey = process.env.ALR_TOKEN_USER_KEY ?? 'email';
         const decodedToken = jwt.decode(token);
 
         const user = (decodedToken as jwt.JwtPayload)[tokenUserKey];
