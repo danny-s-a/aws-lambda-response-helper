@@ -1,6 +1,6 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
 import * as jwt from 'jsonwebtoken';
-import { StatusCodeType } from './statusCodes';
+import { IOptions, StatusCodeType } from './utils';
 
 export interface IObject {
     [key: string]: any;
@@ -24,26 +24,28 @@ export abstract class Response implements IResponse {
         event: APIGatewayProxyEvent,
         statusCode: StatusCodeType,
         body?: any,
-        headers?: IObject,
-        hideBody = false) {
+        options: IOptions = {
+            hideBody: false,
+            logger: console,
+            tokenHeaderKey: 'Authorization'
+        }) {
         this.statusCode = statusCode;
         this.body = JSON.stringify(body);
-        if (headers) {
-            this.headers = headers;
+        if (options.headers) {
+            this.headers = options.headers;
         }
 
-        this.logRequest(event, hideBody);
+        this.logRequest(event, options);
     }
 
-    private logRequest(event: APIGatewayProxyEvent, hideBody: boolean) {
+    private logRequest(event: APIGatewayProxyEvent, options: IOptions) {
         let user;
 
-        const tokenHeaderKey = process.env.ALR_TOKEN_HEADER_KEY ?? 'Authorization';
-        if (event.headers[tokenHeaderKey]) {
-            user = this.getUser(event.headers[tokenHeaderKey]!);
+        if (event.headers[options.tokenHeaderKey!]) {
+            user = this.getUser(event.headers[options.tokenHeaderKey!]!);
         }
 
-        console.log(
+        options.logger.log(
             JSON.stringify({
                 user,
                 responseStatus: this.statusCode,
@@ -53,7 +55,7 @@ export abstract class Response implements IResponse {
                 pathParameters: event.pathParameters,
                 query: event.queryStringParameters,
                 sourceIP: event.requestContext.identity.sourceIp,
-                body: hideBody ? '********' : event.body
+                body: options.hideBody ? '********' : event.body
             })
         );
     }

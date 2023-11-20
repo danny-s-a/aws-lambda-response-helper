@@ -1,6 +1,6 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
 import { IObject, Response } from './BaseResponse';
-import { StatusCodes } from './statusCodes';
+import { StatusCodes } from './utils';
 
 export class Ok extends Response {
     constructor(event: APIGatewayProxyEvent, body?: any, headers?: IObject, hideBody?: boolean) {

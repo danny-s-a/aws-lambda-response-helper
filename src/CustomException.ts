@@ -1,4 +1,4 @@
-import { StatusCodeType } from './statusCodes';
+import { StatusCodeType } from './utils';
 
 export class CustomException {
     statusCode: StatusCodeType;

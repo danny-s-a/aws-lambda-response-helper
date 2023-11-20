@@ -1,4 +1,4 @@
-import { StatusCodes } from './statusCodes';
+import { StatusCodes } from './utils';
 import { CustomException } from './CustomException';
 
 export class InternalServerError extends CustomException {

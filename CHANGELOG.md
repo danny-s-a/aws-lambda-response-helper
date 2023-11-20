@@ -12,6 +12,11 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
+### 2.0.0
+#### Added
+- Complete list of 200, 400 & 500 status codes
+- Ability to provide own logger instead of `console`, e.g. `pino`, `winston`, `@aws-lambda-powertools/logger`, etc.
+
 ### 1.1.9
 #### Fixed
 - `semver` & `word-wrap` regex vulnerabilities in dependencies

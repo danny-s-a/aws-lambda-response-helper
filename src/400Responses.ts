@@ -1,5 +1,5 @@
 import { CustomException } from './CustomException';
-import { StatusCodes } from './statusCodes';
+import { StatusCodes } from './utils';
 
 // 4XX Responses
 export class BadRequest extends CustomException {
