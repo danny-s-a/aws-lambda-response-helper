@@ -1,7 +1,7 @@
 import { InternalServerError, NotImplemented } from '../src/500Responses';
-import { StatusCodes } from '../src/statusCodes';
+import { StatusCodes } from '../src/utils';
 
-describe('500 Responses', () => {
+describe('500Responses', () => {
     it('should return an InternalServerError exception', () => {
         const actual = new InternalServerError();
 

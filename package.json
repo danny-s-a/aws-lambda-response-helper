@@ -1,6 +1,6 @@
 {
   "name": "aws-lambda-response-helper",
-  "version": "1.1.9",
+  "version": "2.0.0",
   "description": "Response library for use with AWS Lambda, with request auditing",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,14 +15,16 @@
   "keywords": [
     "aws",
     "lambda",
-    "response"
+    "response",
+    "helper"
   ],
   "scripts": {
     "build": "tsc",
     "test": "jest",
     "coverage": "jest --collect-coverage",
     "lint": "eslint . --ext .ts --fix=true",
-    "check:linting": "eslint . --ext .ts"
+    "check:linting": "eslint . --ext .ts",
+    "precommit": "(npm run coverage) && (npm run lint)"
   },
   "dependencies": {
     "@types/aws-lambda": "^8.10.100",
