@@ -46,11 +46,14 @@ jobs:
 
       - name: Get local version
         id: local
-        run: echo "::set-output name=version::$(cat package.json | grep '"version":' | awk '{print $2}' | cut -d '"' -f 2)"
+        run: echo "{version}={$(cat package.json | grep '"version":' | awk '{print $2}' | cut -d '"' -f 2)}" >> $GITHUB_OUTPUT
 
       - name: Get published version
         id: published
-        run: echo "::set-output name=version::$(npm view aws-lambda-response-helper version)"
+        run: echo "{version}={$(npm view aws-lambda-response-helper version)}" >> $GITHUB_OUTPUT
+
+      - name: Check outputs
+        run: echo $GITHUB_OUTPUT
 
       - name: Ensure version has been upped
         if: steps.local.outputs.version == steps.published.outputs.version
