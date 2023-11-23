@@ -54,8 +54,8 @@ jobs:
 
       - name: Check outputs
         run: |
-          echo ${{steps.local.outputs.version}}
-          echo ${{steps.published.outputs.version}}
+          echo "Local [${{steps.local.outputs.version}}]"
+          echo "Published [${{steps.published.outputs.version}}]"
 
       - name: Ensure version has been upped
         if: steps.local.outputs.version == steps.published.outputs.version
