@@ -1,8 +1,8 @@
 import { Accepted, Created, NoContent, Ok } from '../src/200Responses';
-import { StatusCodes } from '../src/statusCodes';
+import { StatusCodes } from '../src/utils';
 import { getMockEvent } from './testHelpers';
 
-describe('200 Responses', () => {
+describe('200Responses', () => {
     it('should return an OK response - no body', () => {
         const mockEvent = getMockEvent();
         const actual = new Ok(mockEvent);

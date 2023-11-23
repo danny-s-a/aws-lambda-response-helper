@@ -24,18 +24,16 @@ export interface IMockEventParams {
     requestTimeEpoch?: number;
 }
 
+export const getToken = (user = testUserEmail, tokenUserKey = 'email') => jwt.sign({ [tokenUserKey]: user }, 'secret');
+
 export function getMockEvent(params: IMockEventParams = {
     method: HTTPMethod.GET,
-    authToken: jwt.sign({ email: testUserEmail }, 'secret'),
+    authToken: getToken(),
     requestTimeEpoch: new Date().getTime()
 }): APIGatewayProxyEvent {
-    const eventHeaders = params.headers || {
-        Authorization: params.authToken
-    };
-
     return {
         body: JSON.stringify(params.body),
-        headers: eventHeaders,
+        headers: params.headers || { Authorization: params.authToken },
         httpMethod: params.method,
         path: '/',
         pathParameters: params.pathParameters,

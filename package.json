@@ -23,7 +23,8 @@
     "test": "jest",
     "coverage": "jest --collect-coverage",
     "lint": "eslint . --ext .ts --fix=true",
-    "check:linting": "eslint . --ext .ts"
+    "check:linting": "eslint . --ext .ts",
+    "precommit": "(npm run coverage) && (npm run lint)"
   },
   "dependencies": {
     "@types/aws-lambda": "^8.10.100",

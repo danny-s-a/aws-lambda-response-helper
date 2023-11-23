@@ -1,8 +1,8 @@
 import { BadRequest, Conflict, Forbidden, NotFound, PaymentRequired, Unauthorised } from '../src/400Responses';
-import { StatusCodes } from '../src/statusCodes';
+import { StatusCodes } from '../src/utils';
 
 
-describe('400 Responses', () => {
+describe('400Responses', () => {
     it('should return a BadRequest exception - no message', () => {
         const actual = new BadRequest();
 

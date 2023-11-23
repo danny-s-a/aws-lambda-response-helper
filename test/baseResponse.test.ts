@@ -1,26 +1,68 @@
 import { Response } from '../src/BaseResponse';
-import { StatusCodes } from '../src/statusCodes';
-import { getMockEvent, testUserEmail } from './testHelpers';
+import { StatusCodes } from '../src/utils';
+import { getMockEvent, getToken, testUserEmail } from './testHelpers';
 import * as jwt from 'jsonwebtoken';
 
 class TestResponse extends Response {}
 
-describe('Base Response', () => {
+describe('BaseResponse', () => {
     it('should instantiate and log event as expected', () => {
         console.log = jest.fn();
 
-        const mockEvent = getMockEvent();
         const testStatusCode = StatusCodes.OK;
         const testHeaders = { testHeaderKey: 'iHaveBeenSet' };
-        const actual = new TestResponse(mockEvent, testStatusCode, undefined, { testHeaderKey: 'iHaveBeenSet' });
+        const mockEvent = getMockEvent({ headers: { [testHeaders.testHeaderKey]: getToken() } });
+        const actual = new TestResponse(
+            mockEvent,
+            testStatusCode,
+            undefined,
+            {
+                tokenHeaderKey: 'iHaveBeenSet',
+                logger: console,
+                headers: testHeaders
+            }
+        );
 
         expect(actual.statusCode).toEqual(testStatusCode);
         expect(actual.body).toBeUndefined();
         expect(actual.headers).toEqual(testHeaders);
-
         expect(console.log).toHaveBeenCalledWith(
             JSON.stringify({
                 user: testUserEmail,
+                responseStatus: actual.statusCode,
+                timestamp: new Date(mockEvent.requestContext.requestTimeEpoch),
+                method: mockEvent.httpMethod,
+                path: mockEvent.path,
+                pathParameters: mockEvent.pathParameters,
+                query: mockEvent.queryStringParameters,
+                sourceIP: mockEvent.requestContext.identity.sourceIp,
+                body: mockEvent.body
+            })
+        );
+    });
+
+    it('should instantiate and log event as expected - no user', () => {
+        console.log = jest.fn();
+
+        const testStatusCode = StatusCodes.OK;
+        const testHeaders = { testHeaderKey: 'iHaveBeenSet' };
+        const mockEvent = getMockEvent({ headers: testHeaders });
+        const actual = new TestResponse(
+            mockEvent,
+            testStatusCode,
+            undefined,
+            {
+                tokenHeaderKey: 'iHaveBeenSet',
+                logger: console,
+                headers: testHeaders
+            }
+        );
+
+        expect(actual.statusCode).toEqual(testStatusCode);
+        expect(actual.body).toBeUndefined();
+        expect(actual.headers).toEqual(testHeaders);
+        expect(console.log).toHaveBeenCalledWith(
+            JSON.stringify({
                 responseStatus: actual.statusCode,
                 timestamp: new Date(mockEvent.requestContext.requestTimeEpoch),
                 method: mockEvent.httpMethod,
@@ -50,9 +92,7 @@ describe('Base Response', () => {
         console.log = jest.fn();
 
         const tokenHeaderKey = 'x-auth-token';
-        process.env.ALR_TOKEN_HEADER_KEY = tokenHeaderKey;
         const userTokenKey = 'username';
-        process.env.ALR_TOKEN_USER_KEY = userTokenKey;
 
         const mockEvent = getMockEvent({
             headers: {
@@ -63,7 +103,16 @@ describe('Base Response', () => {
             })
         });
         const testStatusCode = StatusCodes.OK;
-        const actual = new TestResponse(mockEvent, testStatusCode, undefined, undefined, true);
+        const actual = new TestResponse(
+            mockEvent,
+            testStatusCode,
+            undefined,
+            {
+                hideBody: true,
+                tokenHeaderKey: tokenHeaderKey,
+                tokenUserKey: userTokenKey
+            }
+        );
 
         expect(actual.statusCode).toEqual(testStatusCode);
         expect(actual.body).toBeUndefined();
@@ -81,8 +130,5 @@ describe('Base Response', () => {
                 body: '********'
             })
         );
-
-        process.env.ALR_TOKEN_HEADER_KEY = undefined;
-        process.env.ALR_TOKEN_USER_KEY = undefined;
     });
 });

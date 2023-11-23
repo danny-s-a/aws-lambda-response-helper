@@ -6,7 +6,6 @@ All notable changes to this project will be documented in this file.
 - Entries should follow guidance from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Each entry should be titled with version and date
 - Use semantic versioning
-- Use the YYYY-MM-DD date format
 - Most recent entry should be at the top
 
 
@@ -16,6 +15,10 @@ All notable changes to this project will be documented in this file.
 #### Added
 - Complete list of 200, 400 & 500 status codes
 - Ability to provide own logger instead of `console`, e.g. `pino`, `winston`, `@aws-lambda-powertools/logger`, etc.
+### Changed
+- Replaced the optional `headers` and `hideBody` parameters in `Response` and child classes with more friendly `options` parameter
+#### Removed
+- `ALR_TOKEN_HEADER_KEY` and `ALR_TOKEN_USER_KEY` environment variables, now covered by the `options` parameter.
 
 ### 1.1.9
 #### Fixed

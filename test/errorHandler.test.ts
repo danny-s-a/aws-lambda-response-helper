@@ -19,13 +19,26 @@ describe('Error Handler', () => {
     });
 
     it('should return ErrorResponse using the CustomException provided', () => {
-        const testError = new BadRequest('Clien did a bad thing');
+        const testError = new BadRequest('Client did a bad thing');
         const expected = new ErrorResponse(
             testError,
             mockEvent
         );
 
         const actual = errorHandler(testError, mockEvent);
+
+        expect(actual).toEqual(expected);
+    });
+
+    it('should return ErrorResponse and have default to use console for logging', () => {
+        const testError = new BadRequest('Client did a bad thing');
+        const expected = new ErrorResponse(
+            testError,
+            mockEvent,
+            { logger: undefined }
+        );
+
+        const actual = errorHandler(testError, mockEvent, { logger: undefined });
 
         expect(actual).toEqual(expected);
     });

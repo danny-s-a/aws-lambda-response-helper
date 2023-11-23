@@ -69,6 +69,41 @@ export interface ILogger {
 export interface IOptions {
     headers?: {[key: string]: any};
     hideBody?: boolean;
+    logger?: ILogger;
+    tokenHeaderKey?: string;
+    tokenUserKey?: string;
+}
+
+export interface IOptionsDefined extends IOptions {
+    headers: {[key: string]: any};
+    hideBody: boolean;
     logger: ILogger;
-    tokenHeaderKey?: string
+    tokenHeaderKey: string;
+    tokenUserKey: string;
+}
+
+export class Options implements IOptionsDefined {
+    readonly headers: {[key: string]: any} = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true
+    };
+    readonly hideBody: boolean = false;
+    readonly logger: ILogger = console;
+    readonly tokenHeaderKey: string = 'Authorization';
+    readonly tokenUserKey: string = 'email';
+
+    constructor(opts?: {
+        headers?: {[key: string]: any},
+        hideBody?: boolean,
+        logger?: ILogger,
+        tokenHeaderKey?: string,
+        tokenUserKey?: string}) {
+        if (opts) {
+            if (opts.headers !== undefined) this.headers = opts.headers;
+            if (opts.hideBody !== undefined) this.hideBody = opts.hideBody;
+            if (opts.logger !== undefined) this.logger = opts.logger;
+            if (opts.tokenHeaderKey !== undefined) this.tokenHeaderKey = opts.tokenHeaderKey;
+            if (opts.tokenUserKey !== undefined) this.tokenUserKey = opts.tokenUserKey;
+        }
+    }
 }
