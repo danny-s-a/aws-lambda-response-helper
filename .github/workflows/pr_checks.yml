@@ -53,7 +53,9 @@ jobs:
         run: echo "{version}={$(npm view aws-lambda-response-helper version)}" >> $GITHUB_OUTPUT
 
       - name: Check outputs
-        run: echo $GITHUB_OUTPUT
+        run: |
+          echo ${{steps.local.outputs.version}}
+          echo ${{steps.published.outputs.version}}
 
       - name: Ensure version has been upped
         if: steps.local.outputs.version == steps.published.outputs.version
