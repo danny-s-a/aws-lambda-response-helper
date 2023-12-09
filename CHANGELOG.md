@@ -11,6 +11,10 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
+### UNRELEASED
+#### Changed
+- Created constructor `id` param renamed to `body`
+
 ### 2.0.0
 #### Added
 - Complete list of 200, 400 & 500 status codes
