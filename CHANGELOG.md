@@ -11,6 +11,12 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
+### UNRELEASED
+#### Changed
+- Created constructor `id` param renamed to `body`
+### Fixed
+- Removed `options` property from `BaseResponse` causing `502` issues when deployed
+
 ### 2.0.0
 #### Added
 - Complete list of 200, 400 & 500 status codes

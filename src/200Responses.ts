@@ -9,8 +9,8 @@ export class Ok extends Response {
 }
 
 export class Created extends Response {
-    constructor(event: APIGatewayProxyEvent, id?: any, options?: IOptions) {
-        super(event, StatusCodes.CREATED, id, options);
+    constructor(event: APIGatewayProxyEvent, body?: any, options?: IOptions) {
+        super(event, StatusCodes.CREATED, body, options);
     }
 }
 
