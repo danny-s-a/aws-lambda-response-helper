@@ -14,6 +14,8 @@ All notable changes to this project will be documented in this file.
 ### UNRELEASED
 #### Changed
 - Created constructor `id` param renamed to `body`
+### Fixed
+- Removed `options` property from `BaseResponse` causing `502` issues when deployed
 
 ### 2.0.0
 #### Added
