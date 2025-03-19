@@ -11,7 +11,11 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
-### UNRELEASED
+### 2.0.2
+#### Fixed
+- Dependency vulnerabilities
+
+### 2.0.1
 #### Changed
 - Created constructor `id` param renamed to `body`
 ### Fixed
