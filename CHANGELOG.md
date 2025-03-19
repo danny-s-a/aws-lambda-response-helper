@@ -11,12 +11,15 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
+### 2.0.2
+#### Fixed
+- Dependency vulnerabilities
+
 ### 2.0.1
 #### Changed
 - Created constructor `id` param renamed to `body`
 ### Fixed
 - Removed `options` property from `BaseResponse` causing `502` issues when deployed
-- Vulnerable dependencies
 
 ### 2.0.0
 #### Added
