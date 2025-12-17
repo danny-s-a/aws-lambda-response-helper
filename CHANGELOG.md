@@ -11,6 +11,10 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
+### 2.0.3
+#### Changed
+- Patched dependencies
+
 ### 2.0.2
 #### Fixed
 - Dependency vulnerabilities

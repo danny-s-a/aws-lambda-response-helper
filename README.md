@@ -1,5 +1,7 @@
 # AWS Lambda Response Helper
 
+[![SonarQube Cloud](https://sonarcloud.io/images/project_badges/sonarcloud-highlight.svg)](https://sonarcloud.io/summary/new_code?id=danny-s-a_aws-lambda-response-helper)
+
 ## Overview
 Simple response library for use with AWS Lambda.
 Contains a collection of inbuilt response classes and an abstract Response base class that can be used to extend the library to suit implementers needs.
