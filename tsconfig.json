@@ -1,20 +1,16 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "target": "ES5",
+        "target": "es6",
         "outDir": "./dist",
         "rootDir": "./src",
         "removeComments": true,
         "preserveConstEnums": true,
         "strict": true,
-        "moduleResolution": "node",
-        "declaration": true
+        "declaration": true,
+        "types": ["node"]
     },
     "include": [
         "./src"
-    ],
-    "exclude": [
-        "test",
-        "node_modules"
     ]
 }

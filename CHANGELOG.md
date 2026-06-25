@@ -11,6 +11,12 @@ All notable changes to this project will be documented in this file.
 
 ## Releases
 
+### 2.0.4
+#### Changed
+- Patched dependencies
+#### Fixed
+- typing for tests to prevent syntax highlighting errors in IDE
+
 ### 2.0.3
 #### Changed
 - Patched dependencies
