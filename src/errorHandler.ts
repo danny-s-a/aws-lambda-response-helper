@@ -1,4 +1,4 @@
-import { APIGatewayProxyEvent } from 'aws-lambda';
+import { type APIGatewayProxyEvent } from 'aws-lambda';
 import { InternalServerError } from './500Responses';
 import { Response } from './BaseResponse';
 import { CustomException } from './CustomException';

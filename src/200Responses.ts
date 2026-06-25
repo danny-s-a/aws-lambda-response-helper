@@ -1,4 +1,4 @@
-import { APIGatewayProxyEvent } from 'aws-lambda';
+import { type APIGatewayProxyEvent } from 'aws-lambda';
 import { Response } from './BaseResponse';
 import { IOptions, StatusCodes } from './utils';
 
